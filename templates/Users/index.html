@@ -1,0 +1,35 @@
+{% extends "Base/layout.html" %}
+{% block title %} My Blog {% endblock %}
+{% block content %}
+{{ super() }}
+<h2 class="mb-4">Personal Records</h2>
+<a href="{{ url_for('add') }}" class="btn btn-primary mb-3">Add New</a><br><br>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Age</th>
+            <th>Birthday</th>
+            <th>Address</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in personal %}
+        <tr>
+            <td>{{ row.fname }}</td>
+            <td>{{ row.lname }}</td>
+            <td>{{ row.age }}</td>
+            <td>{{ row.bday }}</td>
+            <td>{{ row.address }}</td>
+            <td>
+                <a href="{{ url_for('edit', fname=row.fname) }}" class="btn btn-warning btn-sm">Edit</a>
+                <a href="{{ url_for('delete', fname=row.fname) }}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "Base/layout.html" %}
+{% block title %} My Blog {% endblock %}
+{% block content %}
+{{ super() }}
+<h2 class="mb-4">Edit Record</h2>
+    <form action="{{ url_for('update', fname=personal.fname) }}" method="POST">
+        <input type="text" name="lname" class="form-control mb-2" value="{{ personal.lname }}" required>
+        <input type="text" name="age" class="form-control mb-2" value="{{ personal.age }}" required>
+        <input type="date" name="bday" class="form-control mb-2" value="{{ personal.bday }}" required>
+        <input type="text" name="address" class="form-control mb-2" value="{{ personal.address }}" required>
+        <button type="submit" class="btn btn-success">Update</button>
+        <a href="{{ url_for('index') }}" class="btn btn-secondary">Cancel</a>
+    </form>
+{% endblock %}
+
